@@ -10,15 +10,16 @@ Get the latest [Ubuntu](https://www.ubuntu.com/) Desktop LTS. (Last tested under
 
 ### Installing Player and Stage
 
-Run the shell scripts:
+The install .sh scripts are in /Bash_Files:
 
-1. install_dependency_packages.sh
-2. install_player_stage.sh (Installs latest from version control)
+1. Copy the scripts to a new directory (e.g. /home/user/player_stage)
+2. Execute install_dependency_packages.sh
+3. Execute install_player_stage.sh (Downloads latest from version control)
 
 ### Clone Git Repo
 
 > This repository consists of symbolic linked files so most examples should be provided from the installed versions. Some example files are added in place their originals, so one can run .cfg files with a compiled Player driver.
 
-## Compiling Example Programs
+## Compiling Example Drivers
 
-g++ -o proj 'pkg-config --cflags playerc++' proj.cc 'pkg-config --libs playerc++'
+g++ -o proj \`pkg-config --cflags playerc++\` proj.cc \`pkg-config --libs playerc++\`
