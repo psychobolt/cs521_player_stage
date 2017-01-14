@@ -22,4 +22,8 @@ The install .sh scripts are in /Bash_Files:
 
 ## Compiling Example Drivers
 
-g++ -o proj \`pkg-config --cflags playerc++\` proj.cc \`pkg-config --libs playerc++\`
+Use the following:
+
+g++ -o proj.o \`pkg-config --cflags playerc++\` proj.cc \`pkg-config --libs playerc++\`
+
+> The git repo ignores files with ".o" extension, therefore you should postfix output files with ".o".
