@@ -1,0 +1,1 @@
+/usr/local/share/stage/worlds/walle.inc

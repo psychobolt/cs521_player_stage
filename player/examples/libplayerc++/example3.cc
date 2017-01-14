@@ -1,0 +1,1 @@
+/usr/local/share/player/examples/libplayerc++/example3.cc
