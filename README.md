@@ -21,4 +21,4 @@ Run the shell scripts:
 
 ## Compiling Example Programs
 
-g++ -o proj `pkg-config --cflags playerc++` proj.cc `pkg-config --libs playerc++`
+g++ -o proj 'pkg-config --cflags playerc++' proj.cc 'pkg-config --libs playerc++'
