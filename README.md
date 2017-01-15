@@ -12,13 +12,13 @@ Get the latest [Ubuntu](https://www.ubuntu.com/) Desktop LTS. (Last tested under
 
 The install .sh scripts are in /Bash_Files:
 
-1. Copy the scripts to a new directory (e.g. /home/user/player_stage)
+1. Download and copy the scripts to a new directory (e.g. /home/user/player_stage)
 2. Execute install_dependency_packages.sh
-3. Execute install_player_stage.sh (Downloads latest from version control)
+3. Execute install_player_stage.sh (Downloads and installs the latest from version control)
 
 ### Clone Git Repo
 
-> This repository consists of symbolic linked files so most examples should be provided from the installed versions. Some example files are added in place their originals, so one can run .cfg files with a compiled Player driver.
+> This repository consists of symbolic linked files so most examples will be provided from the player and stage installations. Some example files are added in place their originals, so one can run .cfg files with a compiled Player driver.
 
 ## Compiling Example Drivers
 
