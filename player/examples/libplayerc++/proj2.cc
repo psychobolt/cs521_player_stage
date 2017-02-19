@@ -1,7 +1,6 @@
 #define BOOST_SIGNALS_NO_DEPRECATION_WARNING
 
 #include <cmath>
-#include <unistd.h>
 #include <string>
 #include <iostream>
 #include <fstream>
@@ -34,7 +33,7 @@ class IModule
 
 PlayerClient * robot;
 Position2dProxy * position2d;
-ifstream * channel;
+istream * channel;
 
 class PlanModule : public IModule<PlanModule>
 {
@@ -113,18 +112,6 @@ class PlanModule : public IModule<PlanModule>
         }
 
         double forwardSpeed, yawSpeed;
-        double GetNextYawSpeed(double deltaAngle, double turnRate)
-        {
-          double threshold = 1;
-          if (deltaAngle < -threshold)
-          {
-            return -turnRate;
-          }
-          else if (deltaAngle > threshold)
-          {
-            return turnRate;
-          }
-        }
     };
 
     class Navigator : public IModule<Navigator>
@@ -136,18 +123,16 @@ class PlanModule : public IModule<PlanModule>
         {
           if (Pilot::GetInstance().IsDone() && !IsDone())
           {
+            if (channel->eof())
+            {
+              return;
+            }
             string line;
-            if (getline(*channel, line))
-            {
-              istringstream is(line);
-              is >> next[0];
-              is >> next[1];
-              LINFO << "Move to " << next[0] << ", " << next[1];
-            }
-            else
-            {
-              channel->close();
-            }
+            getline(*channel, line);
+            istringstream is(line);
+            is >> next[0];
+            is >> next[1];
+            LINFO << "Move to " << next[0] << ", " << next[1];
           }
         }
         Vector2d GetNextPos()
@@ -156,7 +141,7 @@ class PlanModule : public IModule<PlanModule>
         }
         bool IsDone()
         {
-          return !channel->is_open();
+          return channel->eof();
         }
       private:
         Navigator() : IModule()
@@ -210,14 +195,14 @@ int main(int argc, char *argv[])
   robot = &client;
   position2d = &p2dProxy;
 
+  p2dProxy.SetMotorEnable(true);
   while (!PlanModule::GetInstance().IsDone())
   {
     PlanModule::GetInstance().Run();
     ActModule::GetInstance().Run();
-
-    usleep(1); // wait 1 sec per Tick
   }
-
+  
+  file.close();
   LINFO << "Robot navigation completed";
   return 0;
 }
