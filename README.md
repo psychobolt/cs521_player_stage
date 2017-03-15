@@ -28,7 +28,7 @@ The install .sh scripts are in /Bash_Files:
 
 Use the following:
 
-g++ -o proj.o \`pkg-config --cflags playerc++\` proj.cc \`pkg-config --libs playerc++\`
+g++ -g -o proj.o \`pkg-config --cflags playerc++\` proj.cc \`pkg-config --libs playerc++\`
 
 > The git repo ignores files with ".o" extension, therefore you should postfix output files with ".o".
 

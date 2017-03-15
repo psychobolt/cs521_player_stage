@@ -239,7 +239,7 @@ int main(int argc, char *argv[])
 {
   if (argc < 2)
   {
-    printf("Usage: \"%s ./waypoints.txt\" # Please enter a waypoint datafile\n",
+    printf("Usage: \"%s x y\" # Where x and y are signed double values\n",
       argv[0]);
     return -1;
   }
